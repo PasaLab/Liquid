@@ -1,0 +1,32 @@
+
+/* make sticky footer  */
+body, html {
+	height: 100%;
+}
+
+footer, .push {
+	height: 36px;
+}
+
+footer, footer .ul, footer .breadcrumb {
+	margin-bottom: 0;
+	background-color: transparent;
+	text-align: center;
+}
+
+footer a:link, footer a:visited {
+	text-decoration: none;
+	color: #777;
+}
+
+footer a:hover {
+	text-decoration: underline;
+	color: #000000;
+}
+
+.wrapper {
+	min-height: 100%;
+	margin: 0 auto -36px; /* the bottom margin is the negative value of the footer's height */
+}
+
+/* end */
