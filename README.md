@@ -45,7 +45,7 @@ YAO-docs/sbin/run_hdfs.sh
 
 ## Start GlusterFS cluster (Optional)
 ```bash
-YAO-docs/sbin/start_glusterfs.sh
+YAO-docs/sbin/run_glusterfs.sh
 ```
 
 
