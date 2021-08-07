@@ -93,5 +93,4 @@ sbin/start_gitea.sh
 
 
 Visit `http://YOUR_IP/install.php`
-> After that, you can visit the webpage, like `slave001:8888`, and then import packages for tests.
-> The default port is `8888`. You can change it according to your requirements.
+
