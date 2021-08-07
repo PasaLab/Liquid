@@ -1,5 +1,5 @@
 # YAO
-This is the code repository for the deep learning job scheduling paper titled 'Efficient Distributed Deep Learning Job Scheduling on GPU Clusters Based onResource Requirement Prediction'.
+This is the code repository for the deep learning job scheduling paper titled 'Efficient Distributed Deep Learning Job Scheduling on GPU Clusters Based on Resource Requirement Prediction'.
 
 The project is based on Docker.
 
