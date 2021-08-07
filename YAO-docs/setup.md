@@ -44,7 +44,7 @@ sbin/run_hdfs.sh
 
 ## Start GlusterFS cluster (Optional)
 ```bash
-sbin/start_glusterfs.sh
+sbin/run_glusterfs.sh
 ```
 
 
