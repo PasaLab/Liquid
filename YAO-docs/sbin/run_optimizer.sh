@@ -11,4 +11,4 @@ docker run \
 	--detach=true \
 	--env PYTHONUNBUFFERED=1 \
 	--mount type=bind,source=/etc/localtime,target=/etc/localtime,readonly \
-	quickdeploy/yao-optimizer:dev
+	onceicy/yao-optimizer:test3
