@@ -49,14 +49,14 @@ Liquid-docs/sbin/run_glusterfs.sh
 ```
 
 
-## Start the agents in each YAO-Worker
+## Start the agents in each Liquid-Worker
 ```bash
 Liquid-docs/sbin/run_agent_helper.sh
 
 Liquid-docs/sbin/run_agent.sh
 ```
 
-## Start the agent-master on YAO-Master
+## Start the agent-master on Liquid-Master
 ```bash
 Liquid-docs/sbin/start_agent_master.sh
 ```
@@ -67,12 +67,12 @@ Liquid-docs/sbin/start_agent_master.sh
 Liquid-docs/sbin/start_mysql.sh
 ```
 
-## Start yao-optimizer on Master Node
+## Start Liquid-optimizer on Master Node
 ```bash
 Liquid-docs/sbin/run_optimizer.sh
 ```
 
-## Start yao-scheduler
+## Start Liquid-scheduler
 ```bash
 Liquid-docs/sbin/start_scheduler.sh
 ```
