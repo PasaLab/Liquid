@@ -1,4 +1,4 @@
-# Steps to bring up the YAO components
+# Steps to bring up the Liquid components
 
 ## Install docker
 ```bash
@@ -66,12 +66,12 @@ sbin/start_agent_master.sh
 sbin/start_mysql.sh
 ```
 
-## Start yao-optimizer on Master Node
+## Start Liquid-optimizer on Master Node
 ```bash
 sbin/run_optimizer.sh
 ```
 
-## Start yao-scheduler
+## Start Liquid-scheduler
 ```bash
 sbin/start_scheduler.sh
 ```
