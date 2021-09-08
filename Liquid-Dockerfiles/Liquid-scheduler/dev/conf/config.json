@@ -1,0 +1,9 @@
+{
+  "kafkaBrokers": [
+    "kafka-node1:9092",
+    "kafka-node2:9092",
+    "kafka-node3:9092"
+  ],
+  "kafkaTopic": "yao",
+  "schedulerPolicy": "fair"
+}
