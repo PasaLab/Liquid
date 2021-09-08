@@ -48,14 +48,14 @@ sbin/run_glusterfs.sh
 ```
 
 
-## Start the agents in each YAO-Worker
+## Start the agents in each Liquid-Worker
 ```bash
 sbin/run_agent_helper.sh
 
 sbin/run_agent.sh
 ```
 
-## Start the agent-master on YAO-Master
+## Start the agent-master on Liquid-Master
 ```bash
 sbin/start_agent_master.sh
 ```
