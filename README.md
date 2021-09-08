@@ -13,7 +13,7 @@ The project is based on Docker.
  
 
 
-# Steps to bring up the YAO components
+# Steps to bring up the Liquid components
 
 
 ## Init a docker swarm cluster
@@ -40,55 +40,55 @@ docker network create --driver overlay --attachable yao-net
 
 ## Start HDFS cluster (Optional)
 ```bash
-YAO-docs/sbin/run_hdfs.sh
+Liquid-docs/sbin/run_hdfs.sh
 ```
 
 ## Start GlusterFS cluster (Optional)
 ```bash
-YAO-docs/sbin/run_glusterfs.sh
+Liquid-docs/sbin/run_glusterfs.sh
 ```
 
 
 ## Start the agents in each YAO-Worker
 ```bash
-YAO-docs/sbin/run_agent_helper.sh
+Liquid-docs/sbin/run_agent_helper.sh
 
-YAO-docs/sbin/run_agent.sh
+Liquid-docs/sbin/run_agent.sh
 ```
 
 ## Start the agent-master on YAO-Master
 ```bash
-YAO-docs/sbin/start_agent_master.sh
+Liquid-docs/sbin/start_agent_master.sh
 ```
 
 
 ## Start mysql
 ```bash
-YAO-docs/sbin/start_mysql.sh
+Liquid-docs/sbin/start_mysql.sh
 ```
 
 ## Start yao-optimizer on Master Node
 ```bash
-YAO-docs/sbin/run_optimizer.sh
+Liquid-docs/sbin/run_optimizer.sh
 ```
 
 ## Start yao-scheduler
 ```bash
-YAO-docs/sbin/start_scheduler.sh
+Liquid-docs/sbin/start_scheduler.sh
 ```
 
 ## Start Redis
 ```bash
-YAO-docs/sbin/start_redis.sh
+Liquid-docs/sbin/start_redis.sh
 ```
 
 ## Start the web portal
 ```bash
-YAO-docs/sbin/start_portal.sh
+Liquid-docs/sbin/start_portal.sh
 ```
 ## Start gitea
 ```bash
-YAO-docs/sbin/start_gitea.sh
+Liquid-docs/sbin/start_gitea.sh
 ```
 
 
