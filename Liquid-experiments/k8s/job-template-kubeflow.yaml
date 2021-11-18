@@ -1,0 +1,82 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: JOB_NAMESPACE
+---
+apiVersion: kubeflow.org/v1
+kind: TFJob
+metadata:
+  name: JOB_NAME
+  namespace: JOB_NAMESPACE
+spec:
+  tfReplicaSpecs:
+    Ps:
+      replicas: 1
+      template:
+        metadata:
+          annotations:
+            sidecar.istio.io/inject: "false"
+        spec:
+          containers:
+          - args:
+            - /usr/bin/python
+            - /workspace/scripts/tf_cnn_benchmarks/tf_cnn_benchmarks.py
+            - --num_gpus=1
+            - --batch_size=32
+            - --model=resnet50
+            - --num_batches=200
+            - --train_dir=/tmp
+            - --variable_update=distributed_replicated
+            env:
+            - name: repo
+              value: "http://code.pasalab.jluapp.com/newnius/yao-job-benchmarks.git"
+            - name: should_wait
+              value: "0"
+            - name: PYTHONUNBUFFERED
+              value: "1"
+            - name: gpu_mem
+              value: "1"
+            - name: output_dir
+              value: "/tmp"
+            image: quickdeploy/yao-tensorflow:1.14-gpu
+            name: tensorflow
+            workingDir: /workspace
+            resources:
+              limits:
+                nvidia.com/gpu: 1
+          restartPolicy: OnFailure
+    Worker:
+      replicas: 2
+      template:
+        metadata:
+          annotations:
+            sidecar.istio.io/inject: "false"
+        spec:
+          containers:
+          - args:
+            - /usr/bin/python
+            - /workspace/scripts/tf_cnn_benchmarks/tf_cnn_benchmarks.py
+            - --num_gpus=1
+            - --batch_size=32
+            - --model=resnet50
+            - --num_batches=200
+            - --train_dir=/tmp
+            - --variable_update=distributed_replicated
+            env:
+            - name: repo
+              value: "http://code.pasalab.jluapp.com/newnius/yao-job-benchmarks.git"
+            - name: should_wait
+              value: "0"
+            - name: PYTHONUNBUFFERED
+              value: "1"
+            - name: gpu_mem
+              value: "1"
+            - name: output_dir
+              value: "/tmp"
+            image: quickdeploy/yao-tensorflow:1.14-gpu
+            name: tensorflow
+            workingDir: /workspace
+            resources:
+              limits:
+                nvidia.com/gpu: 1
+          restartPolicy: OnFailure

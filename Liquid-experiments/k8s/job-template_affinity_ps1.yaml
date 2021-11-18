@@ -1,0 +1,86 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ps1
+  namespace: JOB_NAMESPACE
+spec:
+  backoffLimit: 4
+  template:
+    metadata:
+      labels:
+        role: ps
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: ps1
+        image: "quickdeploy/yao-tensorflow:1.14-gpu"
+        args: ['python', '/workspace/scripts/tf_cnn_benchmarks/tf_cnn_benchmarks.py', '--num_gpus=1', '--batch_size=32', '--model=resnet50', '--num_batches=200', '--train_dir=/tmp', '--variable_update=distributed_replicated', '--ps_hosts=ps1:2222', '--worker_hosts=worker1:2222,worker2:2222', '--job_name=ps', '--task_index=0']
+        env:
+        - name: repo
+          value: "http://code.pasalab.jluapp.com/newnius/yao-job-benchmarks.git"
+        - name: should_wait
+          value: "0"
+        - name: PYTHONUNBUFFERED
+          value: "1"
+        - name: gpu_mem
+          value: "1"
+        - name: output_dir
+          value: "/tmp"
+        ports:
+        - containerPort: 2222
+        resources:
+          limits:
+            nvidia.com/gpu: 1
+        volumeMounts:
+        - name: ps1
+          mountPath: /tmp/
+      volumes:
+      - name: ps1
+        hostPath:
+          path: /dfs/yao-jobs/JOB_NAME/ps1/
+          type: Directory
+      - name: worker1
+        hostPath:
+          path: /dfs/yao-jobs/JOB_NAME/worker1/
+          type: Directory
+      - name: worker2
+        hostPath:
+          path: /dfs/yao-jobs/JOB_NAME/worker2/
+          type: Directory
+      affinity:
+        podAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 10
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: role
+                  operator: In
+                  values:
+                  - worker
+              topologyKey: kubernetes.io/hostname
+
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: role
+                  operator: In
+                  values:
+                  - ps
+              topologyKey: kubernetes.io/hostname
+              namespaces:
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ps1
+  namespace: JOB_NAMESPACE
+spec:
+  type: LoadBalancer
+  selector:
+    job-name: ps1
+  ports:
+  - port: 2222
